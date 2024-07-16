@@ -23,6 +23,14 @@ function App() {
     return <li key={index}>{item.name}</li>;
   });
 
+  const [userName, setUserName] = useState("tony");
+  const handleFormateUserName = () => {
+    // 他这里的un的参数就是useState传入的参数
+    // 并且通过userName变量进行表达
+    // 他这里的setUserName就像是微信小程序的setData
+    setUserName((un) => un + "stark");
+  };
+
   const handleChangeButton = () => {
     setButtonShow(!isButton2);
   };
@@ -44,6 +52,7 @@ function App() {
       <div className="m-App__content" onClick={handleChangeButton}>
         {isButton2 ? <MyButton2 /> : <MyButton />}
       </div>
+      <button onClick={handleFormateUserName}>{userName}</button>
       <ul> {userDOMList} </ul>
       <MyButton count={count} handleChangeCount={handleChangeCount} />
       <h1>Vite + React</h1>
