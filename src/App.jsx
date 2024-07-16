@@ -5,6 +5,8 @@ import "./App.css";
 
 import { MyButton } from "./components/my-button";
 import { MyButton2 } from "./components/my-button2";
+import { ReduceCounter } from "./components/reduce-counter";
+
 function App() {
   const [count, setCount] = useState(0);
   const [isButton2, setButtonShow] = useState(false);
@@ -31,6 +33,25 @@ function App() {
     setUserName((un) => un + "stark");
   };
 
+  const [location, setLocation] = useState({
+    lon: "110",
+    lat: "22",
+  });
+
+  const handleChangeLocation = () => {
+    const newLocation = {
+      lon: "111",
+      lat: "22",
+    };
+    // setLocation(newLocation);
+    setLocation((location) => {
+      return {
+        ...location,
+        ...newLocation,
+      };
+    });
+  };
+
   const handleChangeButton = () => {
     setButtonShow(!isButton2);
   };
@@ -49,6 +70,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
+      <ReduceCounter />
       <div className="m-App__content" onClick={handleChangeButton}>
         {isButton2 ? <MyButton2 /> : <MyButton />}
       </div>
