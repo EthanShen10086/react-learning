@@ -5,6 +5,7 @@ import { MyButton } from "./components/my-button";
 import { MyButton2 } from "./components/my-button2";
 import { ReduceCounter } from "./components/reduce-counter";
 import { MyList } from "./components/my-list";
+import { TimeContainer } from './components/children-property'
 
 const userList = [
   {
@@ -96,6 +97,7 @@ function App() {
           currentItemId={selectedItemId}
         />
       </>
+      <TimeContainer />
       {/* 这里是点击按钮添加姓名的例子 */}
       <button onClick={handleFormateUserName}>{userName}</button>
       {/* 这里是展示list的例子 */}
