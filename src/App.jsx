@@ -4,6 +4,9 @@ import "./App.css";
 import { MyButton } from "./components/my-button";
 import { MyButton2 } from "./components/my-button2";
 import { ReduceCounter } from "./components/reduce-counter";
+import { DispatchPanel } from "./components/dispatch-panel";
+import { Setting } from "./components/setting";
+import { ThemeProvider } from "./components/theme-provider";
 
 const userList = [
   {
@@ -68,16 +71,21 @@ function App() {
         {isButton2 ? <MyButton2 /> : <MyButton />}
       </div>
       <select placeholder="select选择框">
-        {userList.map((item, index) => 
-        // 这里直接return了 
+        {userList.map((item, index) => (
+          // 这里直接return了
           <option value={item.value} key={index}>
             {item.name}
           </option>
-        )}
+        ))}
       </select>
       <button onClick={handleFormateUserName}>{userName}</button>
       <ul> {userDOMList} </ul>
       <MyButton count={count} handleChangeCount={handleChangeCount} />
+      {/* 必须被ThemeProvider包裹不然的话disptach不会被获取到 */}
+      <ThemeProvider>
+        <DispatchPanel></DispatchPanel>
+        <Setting />
+      </ThemeProvider>
     </>
   );
 }
