@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { useReducer } from "react";
 import { createContext } from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 export const ThemeContext = createContext(null);
 export const ThemeDispatchContext = createContext(null);
 
 ThemeProvider.propTypes = {
-    children: PropTypes.elementType
-}
+  children: PropTypes.oneOfType([
+    PropTypes.element, // Accept a single React element
+    PropTypes.arrayOf(PropTypes.element), // Accept an array of React elements
+  ]),
+};
 
 export function ThemeProvider({ children }) {
   // 初级的context可以直接使用useState
@@ -20,7 +23,9 @@ export function ThemeProvider({ children }) {
       {/* <ThemeContext.Provider value={theme}> */}
       {/* <ThemeDispatchContext.Provider value={dispatch}> */}
       {/* 这里除了可以写对象的形式还可以使用数组的形式 */}
-      <ThemeDispatchContext.Provider value={ setTheme } >{children}</ThemeDispatchContext.Provider>
+      <ThemeDispatchContext.Provider value={setTheme}>
+        {children}
+      </ThemeDispatchContext.Provider>
     </ThemeContext.Provider>
   );
 }
