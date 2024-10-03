@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export function TimeContainer2() {
   const [count, setCount] = useState(60);
+  // count 状态变化会导致重新渲染 即重新执行TimeContainer函数 timer 如果不使用useRef 只使用普通变量每次都会被清空
   const timer = useRef(null);
   if (count <= 0) {
     clearInterval(timer.current);
