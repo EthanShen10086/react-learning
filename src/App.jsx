@@ -8,7 +8,8 @@ import { DispatchPanel } from "./components/dispatch-panel";
 import { Setting } from "./components/setting";
 import { ThemeProvider } from "./components/theme-provider";
 import { MyList } from "./components/my-list";
-import { TimeContainer } from './components/children-property'
+import { TimeContainer } from "./components/children-property";
+import { TimeContainer2 } from "./components/TimeContainerUseRef";
 
 const userList = [
   {
@@ -112,6 +113,7 @@ function App() {
         <DispatchPanel></DispatchPanel>
         <Setting />
       </ThemeProvider>
+      <TimeContainer2></TimeContainer2>
     </>
   );
 }
