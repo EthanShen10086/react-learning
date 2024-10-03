@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { useReducer } from "react";
 import { createContext } from "react";
+import PropTypes from 'prop-types'
 
 export const ThemeContext = createContext(null);
 export const ThemeDispatchContext = createContext(null);
+
+ThemeProvider.propTypes = {
+    children: PropTypes.elementType
+}
 
 export function ThemeProvider({ children }) {
   // 初级的context可以直接使用useState

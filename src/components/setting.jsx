@@ -6,6 +6,7 @@ export function Setting() {
   //   const theme = useTheme();
   //   const dispatch = useThemeDispatch();
 
+  // 因为这里传递的不是对象或者数组 所以不需要解构操作 直接使用就行
   const theme = useContext(ThemeContext);
   const setTheme = useContext(ThemeDispatchContext);
 
