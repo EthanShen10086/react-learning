@@ -18,11 +18,14 @@ export const TestRouter = () => {
         // 后端返回的是一个string 所以在这里转化成json
       )
       .then((data) => {
-        console.log(data, " == data");
+        console.log(data.data.msg, " == data");
+        setUserName(data.data.msg);
       })
       .catch((err) => {
         console.error("data error", err);
       });
-  });
+    //  如果不加[] 那么每次刷新页面都会执行一次
+    // 相当于多请求一次
+  }, []);
   return <div>TestRouter {userName}</div>;
 };
