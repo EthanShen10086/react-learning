@@ -10,6 +10,8 @@ import { ThemeProvider } from "./components/theme-provider";
 import { MyList } from "./components/my-list";
 import { TimeContainer } from "./components/children-property";
 import { TimeContainer2 } from "./components/TimeContainerUseRef";
+import { TestRouter } from "./components/test-router";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 const userList = [
   {
@@ -114,6 +116,16 @@ function App() {
         <Setting />
       </ThemeProvider>
       <TimeContainer2></TimeContainer2>
+      <section className="test-router">
+        <BrowserRouter>
+          {/* 这里是跳转用的 你也可以在地址栏直接切换路由 */}
+          <Link to="/test-router">test路由 不加名称没样式出不来</Link>
+          <Routes>
+            {/* <Route path='/user' element={<TestRouter />} /> */}
+            <Route path="/test-router" Component={TestRouter}></Route>
+          </Routes>
+        </BrowserRouter>
+      </section>
     </>
   );
 }
