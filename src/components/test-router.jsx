@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export const TestRouter = () => {
   const [userName, setUserName] = useState("--");
+  const [password, setPassword] = useState("0");
   useEffect(() => {
     // fetch("/api/getUser")
     // 可以直接写死 但是会报跨域的错
@@ -27,5 +28,46 @@ export const TestRouter = () => {
     //  如果不加[] 那么每次刷新页面都会执行一次
     // 相当于多请求一次
   }, []);
-  return <div>TestRouter {userName}</div>;
+
+  const handleAdd = () => {
+    fetch("/api/add", {
+      method: "POST",
+      body: JSON.stringify({
+        userName: "test",
+        password: () => {
+          setPassword(password + 1);
+        },
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
+  return (
+    <>
+      <div>TestRouter {userName}</div>
+      <button onClick={handleAdd}>Add</button>
+    </>
+  );
 };
+
+// import React, { useEffect, useState } from "react";
+// //is a custom hook (name starts with use)
+// function useCounter() {
+//   const [count, setCount] = useState(0);
+//   useEffect(() => {
+//     console.log(count);
+//   }, [count]);
+//   return [count, setCount];
+// }
+
+// export default function App() {
+//   const [count, setCount] = useCounter();
+//   return (
+//     <div>
+//       <h2>Count: {count}</h2>
+//       <button onclick={() => setCount(count + 1)}>Increment</button>
+//     </div>
+//   );
+// }
