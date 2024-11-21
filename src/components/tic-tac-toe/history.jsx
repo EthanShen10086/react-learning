@@ -1,8 +1,13 @@
-export default function GameHistory() {
+import PropTypes from 'prop-types';
+
+GameHistory.propTypes = {
+	children: PropTypes.array,
+};
+export default function GameHistory({ children }) {
 	return (
 		<>
 			<section className="game-info">
-				<ol></ol>
+				<ol> {children}</ol>
 			</section>
 		</>
 	);

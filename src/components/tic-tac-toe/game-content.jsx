@@ -48,7 +48,6 @@ export default function GameContent({ isOSign, square, onPlay }) {
 		// 如果已经赋值了 那么就不允许操作
 		// 如果已经有人胜利了那么也不需要操作
 		// 请注意计算整个数值数组
-		console.log(square, squareIndex, '== handleClickSquare');
 		if (square[squareIndex] || getFinalWinner(square)) {
 			return;
 		}

@@ -21,7 +21,7 @@ export function TicTacToe() {
 	// 	{ length: 3 },
 	// 	(_, rowIndex) => componentList[rowIndex]
 	// );
-	const [isOSign, setOSign] = useState(false);
+	// const [isOSign, setOSign] = useState(false);
 	// 一个二维数组
 	// [
 	// 	// Before first move
@@ -33,13 +33,39 @@ export function TicTacToe() {
 	// 	// ...
 	//   ]
 	const [history, setHistory] = useState([Array(9).fill(null)]);
-	const currentSquares = history[history.length - 1];
-	console.log(history, '== history', currentSquares, '== currentSquares');
+	const [currentStep, setCurrentStep] = useState(0);
+	const currentSquares = history[currentStep];
+	const isOSign = currentStep % 2 !== 0;
 
+	const stepList = history.map((squareList, step) => {
+		let description;
+		step > 0
+			? (description = 'Go to move #' + step)
+			: (description = 'Start Game');
+		return (
+			<li key={step}>
+				<button
+					onClick={() => {
+						jumpHistory(step);
+					}}
+				>
+					{description}
+				</button>
+			</li>
+		);
+	});
 	function handlePlay(nextSquares) {
-		setHistory([...history, nextSquares]);
-		setOSign(!isOSign);
+		const nextHistory = [...history.slice(0, currentStep + 1), nextSquares];
+		setHistory(nextHistory);
+		setCurrentStep(nextHistory.length - 1);
+		// setOSign(!isOSign);
 	}
+	function jumpHistory(nextStep) {
+		setCurrentStep(nextStep);
+		// 如果为2其实是第三步
+		// setOSign(nextStep % 2 !== 0);
+	}
+
 	return (
 		<>
 			<GameContent
@@ -47,7 +73,7 @@ export function TicTacToe() {
 				square={currentSquares}
 				onPlay={handlePlay}
 			/>
-			<GameHistory />
+			<GameHistory>{stepList}</GameHistory>
 		</>
 	);
 }
