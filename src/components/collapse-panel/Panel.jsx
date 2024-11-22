@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 
 Panel.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.array
 }
 
 export default function Panel({ children }) {
