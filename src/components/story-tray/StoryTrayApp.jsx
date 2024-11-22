@@ -7,17 +7,14 @@ let initialStories = [
 ];
 
 export default function StoryTrayApp() {
-	let [stories, setStories] = useState([...initialStories]);
+	let [stories, setStories] = useState([
+		...initialStories
+	]);
 	let time = useTime();
-
 	// HACK: Prevent the memory from growing forever while you read docs.
 	// We're breaking our own rules here.
 	if (stories.length > 100) {
 		stories.length = 100;
-	}
-
-	function handleAddStory(storyList) {
-		setStories(storyList);
 	}
 
 	return (
@@ -29,7 +26,7 @@ export default function StoryTrayApp() {
 			}}
 		>
 			<h2>It is {time.toLocaleTimeString()} now.</h2>
-			<StoryTray stories={stories} addStory={handleAddStory} />
+			<StoryTray stories={stories} />
 		</div>
 	);
 }
@@ -44,3 +41,21 @@ function useTime() {
 	}, []);
 	return time;
 }
+
+// function handleAddStory() {
+// 	useEffect(() => {
+// 		setStories((prevStories) => {
+// 			// 避免重复添加 "Create Story"
+// 			if (!prevStories.some((story) => story.id === 'create')) {
+// 				return [
+// 					...prevStories,
+// 					{
+// 						id: 'create',
+// 						label: 'Create Story',
+// 					},
+// 				];
+// 			}
+// 			return prevStories;
+// 		});
+// 	}, []); // 空依赖数组，确保只在组件挂载时运行
+// }
