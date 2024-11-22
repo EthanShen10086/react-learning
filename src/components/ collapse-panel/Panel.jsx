@@ -1,4 +1,9 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
+
+Panel.propTypes = {
+  children: PropTypes.element
+}
 
 export default function Panel({ children }) {
   const [open, setOpen] = useState(true);

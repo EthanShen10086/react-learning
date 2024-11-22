@@ -4,7 +4,7 @@ import OriginApp from './components/origin-app';
 import { TicTacToe } from './components/tic-tac-toe';
 import RecipeList from './components/receipt/receipt';
 import Poem from './components/poem/poem';
-import CollapseApp from './components/ collapse- panel/App';
+import CollapseApp from './components/ collapse-panel/App';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 function App() {
