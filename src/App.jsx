@@ -4,6 +4,7 @@ import OriginApp from './components/origin-app';
 import { TicTacToe } from './components/tic-tac-toe';
 import RecipeList from './components/receipt/receipt';
 import Poem from './components/poem/poem';
+import CollapseApp from './components/ collapse- panel/App';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 						<Route path="/tic-tac-toe" Component={TicTacToe}></Route>
             <Route path="/receipt" Component={RecipeList}></Route>
             <Route path="/poem" Component={Poem}></Route>
+            <Route path="/collapse-panel" Component={CollapseApp}></Route>
 					</Routes>
 				</BrowserRouter>
 			</section>
