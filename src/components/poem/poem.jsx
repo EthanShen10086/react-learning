@@ -1,3 +1,4 @@
+import Clock from '../clock/clock';
 const poem = {
 	lines: [
 		'I write, erase, rewrite',
@@ -9,6 +10,7 @@ const poem = {
 export default function Poem() {
 	return (
 		<article>
+			<Clock time={new Date()} />
 			{poem.lines.map((line, index) => {
 				return (
 					<div key={index}>
