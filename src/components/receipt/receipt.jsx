@@ -13,7 +13,7 @@ export default function RecipeList() {
 		return (
 			<Fragment key={parentIndex}>
 				<h2>{item.name}</h2>
-				<ul>{ingredentItemList}Ï</ul>
+				<ul>{ingredentItemList}</ul>
 			</Fragment>
 		);
 	});
@@ -21,6 +21,8 @@ export default function RecipeList() {
 		<div>
 			<h1>菜谱</h1>
 			{ingredentList}
+			{/* 封装成组件然后数据由父组件注入 */}
+			{/* <Recipe {...recipe} key={recipe.id} /> */}
 		</div>
 	);
 }
