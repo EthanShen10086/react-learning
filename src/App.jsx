@@ -4,7 +4,8 @@ import OriginApp from './components/origin-app';
 import { TicTacToe } from './components/tic-tac-toe';
 import RecipeList from './components/receipt/receipt';
 import Poem from './components/poem/poem';
-import CollapseApp from './components/ collapse-panel/App';
+import CollapseApp from './components/collapse-panel/App';
+import StoryTrayApp from './components/story-tray/StoryTrayApp';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -19,9 +20,10 @@ function App() {
 						<Route path="/test-router" Component={TestRouter}></Route>
 						<Route path="/origin-app" Component={OriginApp}></Route>
 						<Route path="/tic-tac-toe" Component={TicTacToe}></Route>
-            <Route path="/receipt" Component={RecipeList}></Route>
-            <Route path="/poem" Component={Poem}></Route>
-            <Route path="/collapse-panel" Component={CollapseApp}></Route>
+						<Route path="/receipt" Component={RecipeList}></Route>
+						<Route path="/poem" Component={Poem}></Route>
+						<Route path="/collapse-panel" Component={CollapseApp}></Route>
+						<Route path="/story-tray" Component={StoryTrayApp}></Route>
 					</Routes>
 				</BrowserRouter>
 			</section>
