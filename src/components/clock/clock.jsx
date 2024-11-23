@@ -113,6 +113,58 @@ export function CaptureExample() {
 	);
 }
 
+export function Scoreboard() {
+	const [player, setPlayer] = useState({
+		firstName: 'Ranjani',
+		lastName: 'Shettar',
+		score: 10,
+	});
+
+	function handlePlusClick() {
+		const result = {
+			...player,
+			// 为什么这里player.score++就不行
+			// player.score++ 修改了原始 player 对象中的 score 值（副作用）
+			// 而且先直接返回score导致返回的永远都是原有值
+			// score: ++player.score,
+			score: player.score + 1,
+		};
+		console.log(result, '== result');
+		setPlayer(result);
+	}
+
+	function handleFirstNameChange(e) {
+		setPlayer({
+			...player,
+			firstName: e.target.value,
+		});
+	}
+
+	function handleLastNameChange(e) {
+		setPlayer({
+			...player,
+			lastName: e.target.value,
+		});
+	}
+
+	return (
+		<>
+			<label>
+				Score: <b>{player.score}</b>{' '}
+				<button onClick={handlePlusClick}>+1</button>
+			</label>
+			<label>
+				First name:
+				<input value={player.firstName} onChange={handleFirstNameChange} />
+			</label>
+			<label>
+				Last name:
+				<input value={player.lastName} onChange={handleLastNameChange} />
+			</label>
+		</>
+	);
+}
+
 export default function Clock({ time }) {
 	//  Cannot set properties of null (setting 'className')
 	// if (hours >= 0 && hours <= 6) {
@@ -130,6 +182,7 @@ export default function Clock({ time }) {
 
 	return (
 		<>
+			<Scoreboard />
 			<FeedbackForm />
 			<Form />
 			<CaptureExample />
