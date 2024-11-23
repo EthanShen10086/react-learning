@@ -1,15 +1,36 @@
 import { useState } from 'react';
 import { sculptureList } from './data.js';
+import PropTypes from 'prop-types';
+PreviousButton.propTypes = {
+	isDisable: PropTypes.bool,
+	showPrevious: PropTypes.func,
+};
 
-function PreviousButton({ showPrevious }) {
-	return <button onClick={showPrevious}>Previous</button>;
+function PreviousButton({ showPrevious, isDisable }) {
+	return (
+		// disable属性应该添加在button组件 在PreviousButton 添加disable属性是没用的
+		<button onClick={showPrevious} disabled={isDisable}>
+			Previous
+		</button>
+	);
 }
 
 export default function Gallery() {
 	const [index, setIndex] = useState(0);
 	const [showMore, setShowMore] = useState(false);
-
+	// index >= length - 1不展示Next
+	const isNextDisable = () => {
+		return index >= sculptureList.length - 1;
+	};
+	// index <= 0 时不展示Previous
+	const isPreviousDisable = () => {
+		return index <= 0;
+	};
+	console.log(isNextDisable(), isPreviousDisable(), index);
 	function handleNextClick() {
+		if (isNextDisable()) {
+			return;
+		}
 		setIndex(index + 1);
 	}
 
@@ -23,11 +44,13 @@ export default function Gallery() {
 	let sculpture = sculptureList[index];
 	return (
 		<>
-			{index < sculptureList.length - 1 ? (
-				<button onClick={handleNextClick}>Next</button>
-			) : (
-				<PreviousButton showPrevious={handelPreviewClick} />
-			)}
+			<button onClick={handleNextClick} disabled={isNextDisable()}>
+				Next
+			</button>
+			<PreviousButton
+				showPrevious={handelPreviewClick}
+				isDisable={isPreviousDisable()}
+			/>
 			<h2>
 				<i>{sculpture.name} </i>
 				by {sculpture.artist}
