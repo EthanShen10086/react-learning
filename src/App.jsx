@@ -6,6 +6,7 @@ import RecipeList from './components/receipt/receipt';
 import Poem from './components/poem/poem';
 import CollapseApp from './components/collapse-panel/App';
 import StoryTrayApp from './components/story-tray/StoryTrayApp';
+import PreviousButtonApp from './components/previous-button/PreviousButtonApp';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
 						<Route path="/poem" Component={Poem}></Route>
 						<Route path="/collapse-panel" Component={CollapseApp}></Route>
 						<Route path="/story-tray" Component={StoryTrayApp}></Route>
+						<Route
+							path="/previous-button"
+							Component={PreviousButtonApp}
+						></Route>
 					</Routes>
 				</BrowserRouter>
 			</section>
