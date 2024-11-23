@@ -7,6 +7,7 @@ import Poem from './components/poem/poem';
 import CollapseApp from './components/collapse-panel/App';
 import StoryTrayApp from './components/story-tray/StoryTrayApp';
 import PreviousButtonApp from './components/previous-button/PreviousButtonApp';
+import RequestTracker from './components/times-counter/TimesCounter';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
 							path="/previous-button"
 							Component={PreviousButtonApp}
 						></Route>
+						<Route path="/times-counter" Component={RequestTracker}></Route>
 					</Routes>
 				</BrowserRouter>
 			</section>
