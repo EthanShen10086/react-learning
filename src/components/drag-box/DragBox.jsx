@@ -17,8 +17,8 @@ export default function Canvas() {
 	function handleMove(dx, dy) {
 		setShape((shape) => {
 			shape.position = {
-				x: (shape.position.x += dx),
-				y: (shape.position.y += dy),
+				x: (shape.position.x + dx),
+				y: (shape.position.y + dy),
 			};
 		});
 		// shape.position.x += dx;
