@@ -9,6 +9,7 @@ import StoryTrayApp from './components/story-tray/StoryTrayApp';
 import PreviousButtonApp from './components/previous-button/PreviousButtonApp';
 import RequestTracker from './components/times-counter/TimesCounter';
 import UseSelfStateApp from './components/useSelfState/UseSelfStateApp';
+import MovingDot from './components/moving-dot/MovingDot';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
 						></Route>
 						<Route path="/times-counter" Component={RequestTracker}></Route>
 						<Route path="/process-queue" Component={UseSelfStateApp}></Route>
+						<Route path="/moving-dot" Component={MovingDot}></Route>
 					</Routes>
 				</BrowserRouter>
 			</section>
