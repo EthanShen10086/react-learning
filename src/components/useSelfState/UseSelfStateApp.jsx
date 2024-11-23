@@ -1,6 +1,13 @@
 import { useEffect } from "react";
 import { getFinalState } from "./ProcessQueue.jsx";
 import { useState } from "react";
+import PropTypes from "prop-types";
+
+TestCase.propTypes = {
+  baseState: PropTypes.number,
+  queue: PropTypes.array,
+  expected: PropTypes.number,
+};
 
 function increment(n) {
   return n + 1;
@@ -34,6 +41,12 @@ function TestCase({ baseState, queue, expected }) {
     };
     getData();
   }, []);
+
+  //   const actual = getFinalState(baseState, queue);
+  // 原先这个会报错
+  //  Error: Objects are not valid as a React child (found: [object Promise]). If you meant to render a collection of children, use an array instead.
+  // at throwOnInvalidObjectType (chunk-CE7SSQE4.js?v=671bf0e0:9934:17)
+  // React 只允许渲染字符串、数字、React 元素或数组，而不允许直接渲染 Promise 对象。
 
   return (
     <>
