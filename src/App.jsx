@@ -8,6 +8,7 @@ import CollapseApp from './components/collapse-panel/App';
 import StoryTrayApp from './components/story-tray/StoryTrayApp';
 import PreviousButtonApp from './components/previous-button/PreviousButtonApp';
 import RequestTracker from './components/times-counter/TimesCounter';
+import UseSelfStateApp from './components/useSelfState/UseSelfStateApp';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
 							Component={PreviousButtonApp}
 						></Route>
 						<Route path="/times-counter" Component={RequestTracker}></Route>
+						<Route path="/process-queue" Component={UseSelfStateApp}></Route>
 					</Routes>
 				</BrowserRouter>
 			</section>
