@@ -14,11 +14,29 @@ export default function BucketList() {
 	function handleToggleMyList(artworkId, nextSeen) {
 		const myNextList = [...myList];
 		const artwork = myNextList.find((a) => a.id === artworkId);
+		// 错误的做法
 		// artwork.seen = nextSeen;
 		// setMyList(myNextList);
 		// const result = [...myList, { ...artwork, seen: nextSeen }];
-		const restArtWork = myNextList.filter((item) => item.id !== artwork.id);
-		const result = [...restArtWork, { ...artwork, seen: nextSeen }];
+		// 正确的方案
+		// const restArtWork = myNextList.filter((item) => item.id !== artwork.id);
+		// const result = [...restArtWork, { ...artwork, seen: nextSeen }];
+		// 使用map
+		const result = myNextList.map((item) => {
+			// if (item.id === artworkId) {
+			// 	return {
+			// 		...item,
+			// 		seen: nextSeen,
+			// 	};
+			// }
+			// return item;
+			return item.id === artworkId ? { ...item, seen: nextSeen } : item;
+		});
+		// const targetIndex = myNextList.findIndex((item) => item.id === artworkId);
+		// if (targetIndex !== -1) {
+		// 	myNextList[targetIndex] = { ...myNextList[targetIndex], seen: nextSeen };
+		// }
+		// setMyList(myNextList);
 		setMyList(result);
 	}
 
@@ -27,7 +45,6 @@ export default function BucketList() {
 		const artwork = yourNextList.find((a) => a.id === artworkId);
 		const restArtWork = yourNextList.filter((item) => item.id !== artwork.id);
 		const result = [...restArtWork, { ...artwork, seen: nextSeen }];
-		// const result = [...yourList, { ...artwork, seen: nextSeen }];
 		setYourList(result);
 	}
 
