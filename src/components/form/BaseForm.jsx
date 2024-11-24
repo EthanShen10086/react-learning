@@ -1,4 +1,50 @@
 import { useState } from 'react';
+import './style.css';
+export function Picture() {
+	// const [isActive, setIsActive] = useState(false);
+	// let backgroundClassName = 'background';
+	// let pictureClassName = 'picture';
+	// if (isActive) {
+	// 	pictureClassName += ' picture--active';
+	// } else {
+	// 	backgroundClassName += ' background--active';
+	// }
+
+	// return (
+	// 	<div className={backgroundClassName} onClick={() => setIsActive(false)}>
+	// 		<img
+	// 			onClick={(e) => {
+	// 				e.stopPropagation();
+	// 				setIsActive(true);
+	// 			}}
+	// 			className={pictureClassName}
+	// 			alt="Rainbow houses in Kampung Pelangi, Indonesia"
+	// 			src="https://i.imgur.com/5qwVYb1.jpeg"
+	// 		/>
+	// 	</div>
+	// );
+	const [isBgActive, setIsActive] = useState(true);
+
+	return (
+		// react 不允许同时出现两个className
+		<div
+			// className="picture"
+			// className={`picture ${isActive && 'picture--active'}`}
+			className={`background ${isBgActive ? 'background--active' : ''}`}
+			onClick={() => setIsActive(true)}
+		>
+			<img
+				onClick={(e) => {
+					e.stopPropagation();
+					setIsActive(false);
+				}}
+				className={`picture ${isBgActive ? '' : 'picture--active'}`}
+				alt="Rainbow houses in Kampung Pelangi, Indonesia"
+				src="https://i.imgur.com/5qwVYb1.jpeg"
+			/>
+		</div>
+	);
+}
 
 export default function Form() {
 	const [answer, setAnswer] = useState('');
@@ -28,6 +74,7 @@ export default function Form() {
 
 	return (
 		<>
+			<Picture />
 			<h2>City quiz</h2>
 			<p>
 				In which city is there a billboard that turns air into drinkable water?
