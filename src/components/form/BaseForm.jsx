@@ -1,5 +1,68 @@
 import { useState } from 'react';
 import './style.css';
+
+export function EditProfile() {
+	const [firstName, setFirstName] = useState('Jane');
+	const [secondName, setSecondName] = useState('Jacobs');
+	const [isEdit, setIsEdit] = useState(false);
+
+	return (
+		// 使用 onSubmit：更语义化，适用于表单提交场景，支持回车键。
+		// 使用 onClick：更灵活，适用于状态切换或非表单提交逻辑。
+		<form
+		// onSubmit={(e) => {
+		//     e.preventDefault();
+		//     setIsEdit(!isEdit);
+		//   }}
+		>
+			<label>
+				{/* react官网的例子他用变量这样写确保空格 */}
+				{/* First name:{' '} <b>Jane</b> */}
+				First name:
+				{isEdit ? (
+					<input
+						//  disable为true禁用
+						disabled={!isEdit}
+						value={firstName}
+						onChange={(e) => {
+							setFirstName(e.target.value);
+						}}
+					/>
+				) : (
+					<b>{firstName}</b>
+				)}
+			</label>
+			<label>
+				Last name: <b>Jacobs</b>
+				<input
+					disabled={!isEdit}
+					value={secondName}
+					onChange={(e) => {
+						setSecondName(e.target.value);
+					}}
+				/>
+			</label>
+			<button
+				type="submit"
+				onClick={(e) => {
+					// 如果按钮的 type 没有明确指定（即默认为 type="submit"），点击按钮会触发表单的提交行为。
+					// 如果不添加会导致默认刷新界面导致输入不了字符串
+					e.preventDefault();
+					setIsEdit(!isEdit);
+				}}
+			>
+				{isEdit ? 'Save Profile' : 'Edit Profile'}
+			</button>
+			<p>
+				<i>
+					Hello, {firstName}
+					{` ${secondName}`} !
+				</i>
+			</p>
+		</form>
+	);
+}
+
 export function Picture() {
 	// const [isActive, setIsActive] = useState(false);
 	// let backgroundClassName = 'background';
@@ -35,6 +98,7 @@ export function Picture() {
 		>
 			<img
 				onClick={(e) => {
+					// 停止冒泡
 					e.stopPropagation();
 					setIsActive(false);
 				}}
@@ -74,6 +138,7 @@ export default function Form() {
 
 	return (
 		<>
+			<EditProfile />
 			<Picture />
 			<h2>City quiz</h2>
 			<p>
