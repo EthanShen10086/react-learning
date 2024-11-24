@@ -112,7 +112,6 @@ export function CaptureExample() {
 		</div>
 	);
 }
-
 export function Scoreboard() {
 	const [player, setPlayer] = useState({
 		firstName: 'Ranjani',
@@ -176,7 +175,6 @@ export default function Clock({ time }) {
 	const clockClassName = useMemo(() => {
 		if (!time) return;
 		let hours = time.getHours();
-		console.log(hours, '== hours');
 		return hours >= 0 && hours <= 6 ? 'day' : 'night';
 	}, [time]);
 

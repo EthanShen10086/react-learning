@@ -1,4 +1,5 @@
 import Clock from '../clock/clock';
+import BucketList from '../gift-list/GiftList';
 const poem = {
 	lines: [
 		'I write, erase, rewrite',
@@ -10,6 +11,7 @@ const poem = {
 export default function Poem() {
 	return (
 		<article>
+			<BucketList />
 			<Clock time={new Date()} />
 			{poem.lines.map((line, index) => {
 				return (
