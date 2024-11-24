@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { initialTravelPlan } from './flat-array.js';
-
+import { useImmer } from 'use-immer';
 function PlaceTree({ id, parentId, placesById, onComplete }) {
 	const place = placesById[id];
 	const childIds = place.childIds;
@@ -48,26 +48,44 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
 //   }
 
 export default function TravelPlan() {
-	const [plan, setPlan] = useState(initialTravelPlan);
-	const root = plan[0];
-	const planetIds = root.childIds;
+	// 第二版
+	// const [plan, setPlan] = useState(initialTravelPlan);
+	// const root = plan[0];
+	// const planetIds = root.childIds;
+	// 第一版
 	// const planets = plan.childPlaces;
-
+	// 第三版
+	const [plan, updatePlan] = useImmer(initialTravelPlan);
 	function handleComplete(parentId, childId) {
-		const parent = plan[parentId];
-		// 创建一个其父级地点的新版本
-		// 但不包括子级 ID。
-		const nextParent = {
-			...parent,
-			childIds: parent.childIds.filter((id) => id !== childId),
-		};
-		// 更新根 state 对象...
-		setPlan({
-			...plan,
-			// ...以便它拥有更新的父级。
-			[parentId]: nextParent,
+		// const parent = plan[parentId];
+		// // 创建一个其父级地点的新版本
+		// // 但不包括子级 ID。
+		// const nextParent = {
+		// 	...parent,
+		// 	childIds: parent.childIds.filter((id) => id !== childId),
+		// };
+		// // 更新根 state 对象...
+		// setPlan({
+		// 	...plan,
+		// 	// ...以便它拥有更新的父级。
+		// 	[parentId]: nextParent,
+		// });
+		updatePlan((draft) => {
+			// 从父级地点的子 ID 中移除。
+			const parent = draft[parentId];
+			parent.childIds = parent.childIds.filter((id) => id !== childId);
+
+			// 删除这个地点和它的所有子目录。
+			deleteAllChildren(childId);
+			function deleteAllChildren(id) {
+				const place = draft[id];
+				place.childIds.forEach(deleteAllChildren);
+				delete draft[id];
+			}
 		});
 	}
+	const root = plan[0];
+	const planetIds = root.childIds;
 	return (
 		<>
 			<h2>Places to visit</h2>
