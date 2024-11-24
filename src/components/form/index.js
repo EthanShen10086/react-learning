@@ -30,19 +30,20 @@ function setIsEditing(value) {
 	updateDOM('end');
 }
 
+// input的内容其实是不用修改的
 function updateDOM(type, data) {
 	if (isEditing) {
 		editButton.textContent = 'Save Profile';
 		if (type === 'first') {
 			hide(firstNameText);
 			show(firstNameInput);
-			firstNameInput.value = data;
+			// firstNameInput.value = data;
 			firstNameText.value = data;
 		}
 		if (type === 'last') {
 			hide(lastNameText);
 			show(lastNameInput);
-			lastNameInput.value = data;
+			// lastNameInput.value = data;
 			lastNameText.value = data;
 		}
 		// TODO: show inputs, hide content
