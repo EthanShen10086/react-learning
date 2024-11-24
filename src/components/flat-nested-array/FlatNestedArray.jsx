@@ -50,12 +50,12 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
 export default function TravelPlan() {
 	// 第二版
 	// const [plan, setPlan] = useState(initialTravelPlan);
-	// const root = plan[0];
-	// const planetIds = root.childIds;
 	// 第一版
 	// const planets = plan.childPlaces;
 	// 第三版
 	const [plan, updatePlan] = useImmer(initialTravelPlan);
+	const root = plan[0];
+	const planetIds = root.childIds;
 	function handleComplete(parentId, childId) {
 		// const parent = plan[parentId];
 		// // 创建一个其父级地点的新版本
@@ -84,8 +84,7 @@ export default function TravelPlan() {
 			}
 		});
 	}
-	const root = plan[0];
-	const planetIds = root.childIds;
+
 	return (
 		<>
 			<h2>Places to visit</h2>
