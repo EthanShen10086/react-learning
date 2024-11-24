@@ -12,6 +12,7 @@ import UseSelfStateApp from './components/useSelfState/UseSelfStateApp';
 import MovingDot from './components/moving-dot/MovingDot';
 import Canvas from './components/drag-box/DragBox';
 import Form from './components/form/BaseForm';
+import TravelPlan from './components/flat-nested-array/FlatNestedArray';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
 						<Route path="/moving-dot" Component={MovingDot}></Route>
 						<Route path="/drag-box" Component={Canvas}></Route>
 						<Route path="/form" Component={Form}></Route>
+						<Route path="/flat-nested-array" Component={TravelPlan}></Route>
 					</Routes>
 				</BrowserRouter>
 			</section>
