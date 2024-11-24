@@ -84,6 +84,12 @@ export default function TravelPlan() {
 			}
 		});
 	}
+	// 将deleteAllChildren 放到顶层
+	// function deleteAllChildren(id, draft) {
+	//     const place = draft[id];
+	//     place.childIds.forEach((childId) => deleteAllChildren(childId, draft));
+	//     delete draft[id];
+	//   }
 
 	return (
 		<>
