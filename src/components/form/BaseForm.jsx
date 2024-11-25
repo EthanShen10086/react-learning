@@ -1,6 +1,49 @@
 import { useState } from 'react';
 import './style.css';
 
+import ContactList from './ContactList.jsx';
+import EditContact from './EditContact.jsx';
+
+export function ContactManager() {
+	const [contacts, setContacts] = useState(initialContacts);
+	const [selectedId, setSelectedId] = useState(0);
+	const selectedContact = contacts.find((c) => c.id === selectedId);
+
+	function handleSave(updatedData) {
+		const nextContacts = contacts.map((c) => {
+			if (c.id === updatedData.id) {
+				return updatedData;
+			} else {
+				return c;
+			}
+		});
+		setContacts(nextContacts);
+	}
+
+	return (
+		<div>
+			<ContactList
+				contacts={contacts}
+				selectedId={selectedId}
+				onSelect={(id) => setSelectedId(id)}
+			/>
+			<hr />
+			<EditContact
+			// 在父组件添加key 而不是在子组件添加key
+				key={selectedId}
+				initialData={selectedContact}
+				onSave={handleSave}
+			/>
+		</div>
+	);
+}
+
+const initialContacts = [
+	{ id: 0, name: 'Taylor', email: 'taylor@mail.com' },
+	{ id: 1, name: 'Alice', email: 'alice@mail.com' },
+	{ id: 2, name: 'Bob', email: 'bob@mail.com' },
+];
+
 export function EditProfile() {
 	const [firstName, setFirstName] = useState('Jane');
 	const [secondName, setSecondName] = useState('Jacobs');
@@ -138,6 +181,7 @@ export default function Form() {
 
 	return (
 		<>
+			<ContactManager />
 			<EditProfile />
 			<Picture />
 			<h2>City quiz</h2>
