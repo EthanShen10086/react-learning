@@ -4,7 +4,7 @@ export default function Chat({ contact, message, dispatch }) {
 	return (
 		<section className="chat">
 			<textarea
-				value={message}
+				value={message[contact.id]}
 				placeholder={'和 ' + contact.name + ' 聊天'}
 				onChange={(e) => {
 					// TODO: 派发 edited_message

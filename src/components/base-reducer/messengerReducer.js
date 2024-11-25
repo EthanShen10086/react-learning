@@ -1,6 +1,10 @@
 export const initialState = {
 	selectedId: 0,
-	message: '你好',
+	message: {
+		0: 'Taylor',
+		1: 'Alice',
+		2: 'Bob',
+	},
 };
 
 export function messengerReducer(state, action) {
