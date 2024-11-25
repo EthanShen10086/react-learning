@@ -1,10 +1,33 @@
-import { useReducer } from 'react';
+import { useImmerReducer } from 'use-immer';
 import AddTask from './AddTask.jsx';
 import TaskList from './TaskList.jsx';
-import tasksReducer from './taskReducer.js';
+
+function tasksReducer(draft, action) {
+	switch (action.type) {
+		case 'added': {
+			draft.push({
+				id: action.id,
+				text: action.text,
+				done: false,
+			});
+			break;
+		}
+		case 'changed': {
+			const index = draft.findIndex((t) => t.id === action.task.id);
+			draft[index] = action.task;
+			break;
+		}
+		case 'deleted': {
+			return draft.filter((t) => t.id !== action.id);
+		}
+		default: {
+			throw Error('未知 action：' + action.type);
+		}
+	}
+}
+
 export default function TaskApp() {
-	// 这里的taskReducer就是一个状态机一样的东西
-	const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
+	const [tasks, dispatch] = useImmerReducer(tasksReducer, initialTasks);
 
 	function handleAddTask(text) {
 		dispatch({
@@ -40,36 +63,6 @@ export default function TaskApp() {
 		</>
 	);
 }
-
-// function tasksReducer(tasks, action) {
-// 	switch (action.type) {
-// 		case 'added': {
-// 			return [
-// 				...tasks,
-// 				{
-// 					id: action.id,
-// 					text: action.text,
-// 					done: false,
-// 				},
-// 			];
-// 		}
-// 		case 'changed': {
-// 			return tasks.map((t) => {
-// 				if (t.id === action.task.id) {
-// 					return action.task;
-// 				} else {
-// 					return t;
-// 				}
-// 			});
-// 		}
-// 		case 'deleted': {
-// 			return tasks.filter((t) => t.id !== action.id);
-// 		}
-// 		default: {
-// 			throw Error('未知 action: ' + action.type);
-// 		}
-// 	}
-// }
 
 let nextId = 3;
 const initialTasks = [
