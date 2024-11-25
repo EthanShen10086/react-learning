@@ -17,6 +17,7 @@ import TravelPlan2 from './components/flat-nested-array/TravelPlan';
 import MailClient from './components/mail-client/MailClient';
 import CheckboxGroup from './components/checkbox-group/CheckboxGroup';
 import FilterableList from './components/search-toolbar/SearchToolbar';
+import TaskApp from './components/base-reducer/BaseReducer';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
 						<Route path="/highlight-letter" Component={MailClient}></Route>
 						<Route path="/checkbox-group" Component={CheckboxGroup}></Route>
 						<Route path="/search-toolbar" Component={FilterableList}></Route>
+						<Route path="/base-reducer" Component={TaskApp}></Route>
 					</Routes>
 				</BrowserRouter>
 			</section>
