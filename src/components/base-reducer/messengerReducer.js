@@ -13,7 +13,6 @@ export function messengerReducer(state, action) {
 			return {
 				...state,
 				selectedId: action.contactId,
-				message: '',
 			};
 		}
 		case 'edited_message': {

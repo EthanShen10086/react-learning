@@ -11,7 +11,10 @@ export default function Chat({ contact, message, dispatch }) {
 					// (从 e.target.value 获取输入框的值)
 					dispatch({
 						type: 'edited_message',
-						message: e.target.value,
+						message: {
+							...message,
+							[contact.id]: e.target.value,
+						},
 					});
 				}}
 			/>
