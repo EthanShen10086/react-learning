@@ -2,26 +2,30 @@ import { useState } from 'react';
 import { foods, filterItems } from './data.js';
 
 export default function FilterableList() {
-	const [searchText, setSearchText] = useState('');
-	const [filterList, setFilterList] = useState([...foods]);
-	const handleChangeSearchText = (value) => {
-		const originalData = foods.slice();
-		console.log(value, '== handleChangeSearchText');
-		// 如果用 filterList 在第一次获取的数据空的时候filterList就会为[] 那么逻辑就有问题
-		const result = originalData.filter((item) => {
-			console.log(item, value, item.description.includes(value));
-			if (item.description.includes(value)) {
-				return item;
-			}
-		});
-		console.log(result);
-		setFilterList(result);
-		setSearchText(value);
-	};
+	// const [searchText, setSearchText] = useState('');
+	// const [filterList, setFilterList] = useState([...foods]);
+	// const handleChangeSearchText = (value) => {
+	// 	const originalData = foods.slice();
+	// 	console.log(value, '== handleChangeSearchText');
+	// 	// 如果用 filterList 在第一次获取的数据空的时候filterList就会为[] 那么逻辑就有问题
+	// 	const result = originalData.filter((item) => {
+	// 		console.log(item, value, item.description.includes(value));
+	// 		if (item.description.includes(value)) {
+	// 			return item;
+	// 		}
+	// 	});
+	// 	setFilterList(result);
+	// 	setSearchText(value);
+	// };
+	const [query, setQuery] = useState('');
+	const filterList = filterItems(foods, query);
 
+	function handleChange(e) {
+		setQuery(e.target.value);
+	}
 	return (
 		<>
-			<SearchBar searchText={searchText} onSearch={handleChangeSearchText} />
+			<SearchBar searchText={query} onSearch={handleChange} />
 			<hr />
 			<List items={filterList} />
 		</>
@@ -31,13 +35,7 @@ export default function FilterableList() {
 function SearchBar({ searchText, onSearch }) {
 	return (
 		<label>
-			搜索：{' '}
-			<input
-				value={searchText}
-				onChange={(e) => {
-					onSearch(e.target.value);
-				}}
-			/>
+			搜索： <input value={searchText} onChange={onSearch} />
 		</label>
 	);
 }
