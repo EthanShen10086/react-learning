@@ -19,7 +19,7 @@ export default function Chat({ contact, message, dispatch }) {
 			<button
 				onClick={(e) => {
 					dispatch({
-						type: 'edited_message',
+						type: 'sent_message',
 						message: '',
 					});
 					alert(contact.email + message);

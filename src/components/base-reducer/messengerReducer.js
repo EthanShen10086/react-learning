@@ -18,6 +18,12 @@ export function messengerReducer(state, action) {
 				message: action.message,
 			};
 		}
+		case 'sent_message': {
+			return {
+				...state,
+				message: '',
+			};
+		}
 		default: {
 			throw Error('未知 action：' + action.type);
 		}
