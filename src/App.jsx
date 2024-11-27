@@ -18,6 +18,7 @@ import MailClient from './components/mail-client/MailClient';
 import CheckboxGroup from './components/checkbox-group/CheckboxGroup';
 import FilterableList from './components/search-toolbar/SearchToolbar';
 import TaskApp from './components/base-reducer/BaseReducer';
+import Messenger from './components/useSelfReducer/UseSelfReducer';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
 						<Route path="/checkbox-group" Component={CheckboxGroup}></Route>
 						<Route path="/search-toolbar" Component={FilterableList}></Route>
 						<Route path="/base-reducer" Component={TaskApp}></Route>
+						<Route path="/self-reducer" Component={Messenger}></Route>
 					</Routes>
 				</BrowserRouter>
 			</section>
