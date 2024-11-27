@@ -1,10 +1,15 @@
 import { LevelContext } from './LevelContext';
-export default function Section({ level, children }) {
+import { useContext } from 'react';
+export default function Section({ children }) {
+	const level = useContext(LevelContext);
+	console.log(level, '== useContext');
 	return (
 		<section className="section">
 			{/* “如果在 <Section> 组件中的任何子组件请求 LevelContext，给他们这个 level。”
 			组件会使用 UI 树中在它上层最近的那个 <LevelContext.Provider> 传递过来的值。 */}
-			<LevelContext.Provider value={level}>{children}</LevelContext.Provider>
+			<LevelContext.Provider value={level + 1}>
+				{children}
+			</LevelContext.Provider>
 		</section>
 	);
 }
