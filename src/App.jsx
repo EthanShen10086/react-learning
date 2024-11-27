@@ -19,6 +19,7 @@ import CheckboxGroup from './components/checkbox-group/CheckboxGroup';
 import FilterableList from './components/search-toolbar/SearchToolbar';
 import TaskApp from './components/base-reducer/BaseReducer';
 import Messenger from './components/useSelfReducer/UseSelfReducer';
+import Page from './components/use-self-context/Page';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
 						<Route path="/search-toolbar" Component={FilterableList}></Route>
 						<Route path="/base-reducer" Component={TaskApp}></Route>
 						<Route path="/self-reducer" Component={Messenger}></Route>
+						<Route path="/self-context" Component={Page}></Route>
 					</Routes>
 				</BrowserRouter>
 			</section>
