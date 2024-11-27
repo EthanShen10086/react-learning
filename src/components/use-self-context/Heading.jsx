@@ -4,6 +4,8 @@ export default function Heading({ children }) {
 	// 获取context
 	const level = useContext(LevelContext);
 	switch (level) {
+		case 0:
+			throw Error('Heading 必须在 Section 内部！');
 		case 1:
 			return <h1>{children}</h1>;
 		case 2:
